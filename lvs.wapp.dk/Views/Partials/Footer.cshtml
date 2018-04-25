@@ -1,0 +1,62 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+    var allpages = Model.Content.Site().Descendants();
+    var root = CurrentPage.AncestorOrSelf(1);
+}
+<footer class="site-footer">
+
+    <div class="item-wrapper page-container">
+        <div id="footer-sidebar1" class="footer-column">
+            <h4>Landsforeningen af væresteder</h4>
+            <p>
+                LVS er værestedernes værested.
+                I LVS kan værestederne finde et fællesskab
+                og en fagligt funderet opbakning til at udvikle det,
+                de er bedst til: at hjælpe socialt udsatte mennesker
+                til et bedre liv.
+            </p>
+        </div>
+        <div id="footer-sidebar2" class="footer-column">
+            <h4>Oversigt</h4>
+            <ul>
+                @{
+                    foreach (var page in root.Children.Where("Visible"))
+                    {
+            <li class="nav-item @(page.IsAncestorOrSelf(CurrentPage) ? "active" : null)">
+                <a class="nav-link" href="@page.Url">@page.Name</a>
+            </li>
+}
+                }
+                <!--
+    <li><a href="">Forside</a></li>
+    <li><a href="">Om os</a></li>
+    <li><a href="">Aktiviteter</a></li>
+    <li><a href="">Væresteder</a></li>
+    <li><a href="">Projekter</a></li>
+        -->
+            </ul>
+        </div>
+        <div id="footer-sidebar3" class="footer-column">
+            <h4>Kontakt informationer</h4>
+            <ul>
+                <li>Landsforeningen af VæreSteder</li>
+                <li><a href="#">Adresse: Danmarksgade 6A, 1. - 7000 Fredericia</a></li>
+                <li><a href="#">Telefon: 7592 4000</a></li>
+                <li><a href="#">Mail: lvsinfo@lavs.dk</a></li>
+                <li>cvr.nr. 29055009</li>
+            </ul>
+        </div>
+        <div id="footer-sidebar4" class="footer-column">
+            <h4>Følg os</h4>
+            <div class="social-footer">
+                <a href="#"><i class="fab fa-facebook-square medium-icons"></i></a>
+                <a href="#"><i class="fab fa-youtube medium-icons"></i></a>
+                <a href="#"><i class="fab fa-twitter medium-icons"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="copyright-footer">
+    <p>Copyright &#169; 2018 Group 1 Inc. All rights reserved.</p>
+</div>

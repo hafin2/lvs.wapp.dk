@@ -1,0 +1,50 @@
+﻿@using System.Security.Cryptography
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Umbraco.Web
+@{
+    Layout = null;
+    var allpages = Model.Content.Site().Descendants();
+    var root = CurrentPage.AncestorOrSelf(1);
+    var home = Umbraco.TypedContentAtRoot().OfType<Home>().SingleOrDefault();
+}
+
+<header>
+    <div class="header-container">
+        <div class="contact-info">
+            <a href="#"><i class="fas fa-phone"></i> Tlf. 7592 4000</a>
+            <a href="#"><i class="fas fa-envelope"></i> lvsinfo@lavs.dk</a>
+        </div>
+        <div class="link-elements">
+            <a href=""><i class="fab fa-facebook-square"></i></a>
+            <a href=""><i class="fab fa-youtube"></i></a>
+            <a href=""><i class="fab fa-twitter"></i></a>
+        </div>
+    </div>
+</header>
+<nav>
+    <div class="nav-container">
+        <div id="MobileNav">
+            <span id="mobilemenu" class="fas fa-bars"></span>
+        </div>
+        <!--Fix umbraco field-->
+        <a class="logo" href="#"><img src="" alt="Alternate Text" /></a>
+
+        <ul id="navElements">
+            @{
+        foreach (var page in root.Children.Where("Visible"))
+        {
+            <li class="nav-item @(page.IsAncestorOrSelf(CurrentPage) ? "active" : null)">
+                <a class="nav-link" href="@page.Url">@page.Name</a>
+            </li>
+}
+            }
+            <!--
+    <li><a href="frontpage.html">Forside</a></li>
+    <li><a href="Whois.html">Om os <i class="fas fa-sort-down"></i></a></li>
+    <li><a href="activitycalender.html">Aktiviteter</a></li>
+    <li><a href="vaeresteder.html">Væresteder</a></li>
+    <li><a href="contact.html">Kontakt os</a></li>
+    -->
+        </ul>
+    </div>
+</nav>
