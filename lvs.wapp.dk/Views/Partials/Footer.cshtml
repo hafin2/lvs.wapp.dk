@@ -1,7 +1,6 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = null;
-    var allpages = Model.Content.Site().Descendants();
     var root = CurrentPage.AncestorOrSelf(1);
 }
 <footer class="site-footer">
