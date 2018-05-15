@@ -49,9 +49,27 @@ namespace Umbraco.Web.PublishedContentModels
 		/// nBody
 		///</summary>
 		[ImplementPropertyType("nBody")]
-		public string NBody
+		public IHtmlString NBody
 		{
-			get { return this.GetPropertyValue<string>("nBody"); }
+			get { return this.GetPropertyValue<IHtmlString>("nBody"); }
+		}
+
+		///<summary>
+		/// nDato
+		///</summary>
+		[ImplementPropertyType("nDato")]
+		public DateTime NDato
+		{
+			get { return this.GetPropertyValue<DateTime>("nDato"); }
+		}
+
+		///<summary>
+		/// Forfatter
+		///</summary>
+		[ImplementPropertyType("nForfatter")]
+		public string NForfatter
+		{
+			get { return this.GetPropertyValue<string>("nForfatter"); }
 		}
 
 		///<summary>
@@ -70,6 +88,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public IPublishedContent NImg
 		{
 			get { return this.GetPropertyValue<IPublishedContent>("nImg"); }
+		}
+
+		///<summary>
+		/// nThumbText
+		///</summary>
+		[ImplementPropertyType("nThumbText")]
+		public string NThumbText
+		{
+			get { return this.GetPropertyValue<string>("nThumbText"); }
 		}
 	}
 }

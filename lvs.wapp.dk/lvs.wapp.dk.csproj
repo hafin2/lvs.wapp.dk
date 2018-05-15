@@ -292,6 +292,12 @@
     <Content Include="Views\Partials\Navigation.cshtml" />
     <Content Include="Views\Partials\Footer.cshtml" />
     <Content Include="Views\Home.cshtml" />
+    <Content Include="Views\KontaktOs.cshtml" />
+    <Content Include="Views\Nyhed.cshtml" />
+    <Content Include="Views\Nyheder.cshtml" />
+    <Content Include="Views\Vaeresteder.cshtml" />
+    <Content Include="Views\Partials\Breadcrumb.cshtml" />
+    <Content Include="Views\Partials\breadtest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

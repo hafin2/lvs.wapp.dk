@@ -9,20 +9,28 @@
     - Finally it outputs the name of the current page (without a link)
 *@
 
-@{ var selection = Model.Content.Ancestors().ToArray(); }
+@{
+    var selection = Model.Content.Ancestors().ToArray();
+
+
+}
 
 <div class="siteInfo">
 
     @if (selection.Length > 0)
     {
-        <ul class="breadcrumb">
+        <ul class="breadcrumb" style="display: flex;">
             @* For each page in the ancestors collection which have been ordered by Level (so we start with the highest top node first) *@
             @foreach (var item in selection.OrderBy(x => x.Level))
             {
-                <li> <h5> <a style="text-decoration: none; color: #4c4c4c;" href="@item.Url">@item.Name - </a> <span style="color:#2DCA73" class="">@Model.Content.Name</span></h5></li>
+                <li> <h5> <a style="text-decoration: none; color: #4c4c4c;" href="@item.Url">@item.Name</a> <span class="">&nbsp;-&nbsp;&nbsp;</span></h5></li>
             }
 
             @* Display the current page as the last item in the list *@
+            <li style="color:#2DCA73" class=""> <h5>@Model.Content.Name</h5> </li>
         </ul>
     }
 </div>
+
+
+

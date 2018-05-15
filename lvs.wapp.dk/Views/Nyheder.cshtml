@@ -6,7 +6,7 @@
 }
 
 <h1 class="page-container h1banner">@Umbraco.Field("bannerHead")</h1>
-<div id="overlay">
+<div id="overlayImgs">
     <div class="header">
         @{
             var typedMediaPickerSingle = Model.Content.GetPropertyValue<IPublishedContent>
@@ -46,9 +46,9 @@
             </div>
             <div class="nyheder-body">
                 <p>
-                    @Nyhed.NBody
+                    @Nyhed.NThumbText
                 </p>
-                <a class="nyheder-btn" href="#">Læs mere <i class="fas fa-arrow-right"></i></a>
+                <a class="nyheder-btn" href="@Nyhed.Url">Læs mere <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     }

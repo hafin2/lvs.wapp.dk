@@ -3,13 +3,14 @@
 @{
     Layout = "_Master.cshtml";
     var nyheder = Model.Content.Children<Nyhed>();
+    
 }
-<h1 class="page-container h1banner">@Umbraco.Field("bannerHead")</h1>
-<div id="overlay">
+<h1 class="page-container h1banner">@Umbraco.Field("nHead")</h1>
+<div id="overlayImg">
     <div class="header">
         @{
             var typedMediaPickerSingle = Model.Content.GetPropertyValue<IPublishedContent>
-            ("banner");
+            ("nImg");
             if (typedMediaPickerSingle != null)
             {
                 <!--<p>@typedMediaPickerSingle.Url</p>-->
@@ -19,4 +20,32 @@
 
     </div>
 
+</div>
+
+<div class="page-container">
+    <div class="siteInfo">
+
+        @Html.Partial("Breadcrumb")
+    </div>
+</div>
+
+
+<div class="nyhed-container">
+    <div class="wrapper">
+        <div class="info">
+            <ul>
+                <li> <p> <strong>Udgivet &middot; @umbraco.library.FormatDateTime(Model.Content.GetPropertyValue("nDato").ToString(), "dd-MM-yyyy")</strong> </p> </li>
+                <li> <p> <strong>Forfatter &middot; @Umbraco.Field("nForfatter")</strong> </p> </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+    <div class="nyhed-body wrapper">
+        
+        <p>
+            @Umbraco.Field("nBody")
+        </p>
+    </div>
 </div>
