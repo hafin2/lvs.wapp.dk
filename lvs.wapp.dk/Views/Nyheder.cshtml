@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Nyheder>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "_Master.cshtml";
+    var nyheder = Model.Content.Children<Nyhed>();
+}
+
+<h1 class="page-container h1banner">@Umbraco.Field("bannerHead")</h1>
+<div id="overlay">
+    <div class="header">
+        @{
+            var typedMediaPickerSingle = Model.Content.GetPropertyValue<IPublishedContent>
+            ("banner");
+            if (typedMediaPickerSingle != null)
+            {
+                <!--<p>@typedMediaPickerSingle.Url</p>-->
+                <img src="@typedMediaPickerSingle.Url" alt="@typedMediaPickerSingle.GetPropertyValue(" alt")" />
+            }
+        }
+
+    </div>
+
+</div>
+
+<div class="page-container">
+    <div class="siteInfo">
+        @Html.Partial("Breadcrumb")
+    </div>
+</div>
+
+
+<div class="grid">
+
+    <div class="nyheder-container page-container">
+
+        @foreach (var Nyhed in nyheder)
+    {
+        <div class="nyheder-box wrapper y5 vWrapper">
+            <div class="overlay-wrapper">
+                <img src="@Nyhed.NImg.Url" alt="">
+                <div class="text-overlay">
+                    <div class="nyheder-info">
+                        <h3>@Nyhed.NHead</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="nyheder-body">
+                <p>
+                    @Nyhed.NBody
+                </p>
+                <a class="nyheder-btn" href="#">Læs mere <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    }
+
+    </div>
+</div>

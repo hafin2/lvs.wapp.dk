@@ -1,0 +1,70 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.KontaktOs>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+
+@{
+    Layout = "_Master.cshtml";
+    var home = Umbraco.TypedContentAtRoot().OfType<Home>().SingleOrDefault();
+}
+
+<h1 class="page-container h1banner">@Umbraco.Field("bannerHead")</h1>
+<div id="overlay">
+    <div class="header">
+        @{
+            var typedMediaPickerSingle = Model.Content.GetPropertyValue<IPublishedContent>
+            ("banner");
+            if (typedMediaPickerSingle != null)
+            {
+                <!--<p>@typedMediaPickerSingle.Url</p>-->
+                <img src="@typedMediaPickerSingle.Url" alt="@typedMediaPickerSingle.GetPropertyValue(" alt")" />
+            }
+        }
+
+    </div>
+
+</div>
+
+<div class="page-container">
+    <div class="siteInfo">
+        @Html.Partial("Breadcrumb")
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="contactContainer">
+        <div class="wrapper">
+            <div class="info">
+                <h2>Landsforeningen af Væresteder</h2>
+                <hr>
+                <ul>
+                    <li><p><strong>Email</strong> &middot; <a href="mailto:@home.Email?Subject=Kontakt%20LVS%20Site">@home.Email</a></p></li>
+                    <li><p><strong>Telefon</strong> &middot; <a href="tel:@home.Telefon">@home.Telefon</a></p></li>
+                    <li><p><strong>cvr.nr</strong> &middot; <a href="https://datacvr.virk.dk/data/visenhed?enhedstype=virksomhed&id=29055009">@home.Cvr</a></p></li>
+                </ul>
+                <hr>
+                <ul>
+                    <li><p><strong>Adresse</strong> &middot; <a href="https://www.google.com/maps?ll=55.567378,9.754122&z=16&t=m&hl=en-US&gl=DK&mapclient=embed&cid=1894542937537147434">@home.Adresse</a></p></li>
+                </ul>
+                <!-- Maps -->
+                <div class="maps">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2255.999667755417!2d9.752318421590056!3d55.56720449882735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1a4ac4c393a0722a!2sLandsforeningen+Af+V%C3%A6resteder!5e0!3m2!1sda!2sdk!4v1522831276543?key=AIzaSyA02AbKxH52JCtTDA0erMVAoHHkIIPkrzo" width="400" height="180" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="form">
+            <form action="">
+                <h3>Fulde navn</h3> <br>
+                <input type="text" name="navn">
+                <h3>Email</h3> <br>
+                <input type="email" name="email" id="">
+                <h3>Telefon</h3> <br>
+                <input type="tel" name="telefon" id="">
+                <h3>Besked</h3> <br>
+                <textarea name="besked" id="" rows="9"></textarea>
+                <br>
+                <input type="submit" value="Send besked">
+            </form>
+        </div>
+    </div>
+</div>
+

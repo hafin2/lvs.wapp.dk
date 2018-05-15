@@ -1,0 +1,112 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Vaeresteder>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+
+@{
+
+    Layout = "_Master.cshtml";
+    var home = Umbraco.TypedContentAtRoot().OfType<Home>().SingleOrDefault();
+    var vaeresteder = Model.Content.Children<Vaerested>();
+
+}
+<h1 class="page-container h1banner">@Umbraco.Field("bannerHead")</h1>
+<div id="overlay">
+    <div class="header">
+        @{
+            var typedMediaPickerSingle = Model.Content.GetPropertyValue<IPublishedContent>
+            ("banner");
+            if (typedMediaPickerSingle != null)
+            {
+                <!--<p>@typedMediaPickerSingle.Url</p>-->
+                <img src="@typedMediaPickerSingle.Url" alt="@typedMediaPickerSingle.GetPropertyValue(" alt")" />
+            }
+        }
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<div class="page-container filter_info">
+    <div class="siteInfo">
+        @Html.Partial("Breadcrumb")
+
+    </div>
+    <div class="category-filter wrapper flex">
+        <label class="switch" for="sjaelland_checkbox">
+            <input type="checkbox" id="sjaelland_checkbox" class="control sjaelland" data-toggle=".sjaelland">
+            <div class="slider round"> <p class="byNavn">Sjælland</p> </div>
+        </label>
+
+        <label class="switch" for="fyn_checkbox">
+            <input type="checkbox" id="fyn_checkbox" class="control fyn" data-toggle=".fyn">
+            <div class="slider round"> <p class="byNavn">Fyn</p> </div>
+        </label>
+
+        <label class="switch" for="jylland_checkbox">
+            <input type="checkbox" id="jylland_checkbox" class="control jylland" data-toggle=".jylland">
+            <div class="slider round"> <p class="byNavn">Jylland</p> </div>
+        </label>
+
+        <!-- <input type="text" id="mixInput" placeholder="Type here"> -->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="grid">
+
+    <div class="vaerestederContainer page-container">
+        @foreach (var Vaerested in vaeresteder)
+        {
+            <div class="wrapper vWrapper y5 mix @Vaerested.VLandsdel">
+                <div class="overlay-wrapper">
+                    <img src="@Vaerested.VImg.Url" alt="">
+                    <div class="text-overlay">
+                        <div class="vaerested-info">
+                            <h3>@Vaerested.VName</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vaerested1">
+                    <ul>
+                        <li><p><strong>Email</strong> &middot; <a href="mailto:@Vaerested.VEmail?Subject=Kontakt%20LVS%20Site">@Vaerested.VEmail</a></p></li>
+                        <li><p><strong>Telefon</strong> &middot; <a href="tel:@Vaerested.VTelefon">@Vaerested.VTelefon</a></p></li>
+                        <li><p><strong>Adresse</strong> &middot; @Vaerested.VAdresse</p></li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<script type='text/javascript' src="~/scripts/mixitup.min.js"></script>
+<!-- mix it up -->
+<script>
+    // var containerEl = document.querySelector('.vaerestederContainer');
+    var mixer = mixitup('.grid');
+    var targetSelector = '.mix';
+
+    var mixer = mixitup('.vaerestederContainer', {
+        selectors: {
+            target: targetSelector
+        },
+        animation: {
+            duration: 200
+        }
+    });
+</script>

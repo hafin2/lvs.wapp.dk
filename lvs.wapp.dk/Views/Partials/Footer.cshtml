@@ -1,7 +1,8 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = null;
-    var root = CurrentPage.AncestorOrSelf(1);
+    var allpages = Model.Content.Site().Descendants();
+    var home = Umbraco.TypedContentAtRoot().OfType<Home>().SingleOrDefault();
 }
 <footer class="site-footer">
 
@@ -19,39 +20,30 @@
         <div id="footer-sidebar2" class="footer-column">
             <h4>Oversigt</h4>
             <ul>
-                @{
-                    foreach (var page in root.Children.Where("Visible"))
-                    {
-            <li class="nav-item @(page.IsAncestorOrSelf(CurrentPage) ? "active" : null)">
-                <a class="nav-link" href="@page.Url">@page.Name</a>
+                @foreach (var page in allpages)
+                {
+            <li>
+                <a href="@page.Url">@page.Name</a>
             </li>
-}
-                }
-                <!--
-    <li><a href="">Forside</a></li>
-    <li><a href="">Om os</a></li>
-    <li><a href="">Aktiviteter</a></li>
-    <li><a href="">Væresteder</a></li>
-    <li><a href="">Projekter</a></li>
-        -->
+            }
             </ul>
         </div>
         <div id="footer-sidebar3" class="footer-column">
             <h4>Kontakt informationer</h4>
             <ul>
-                <li>Landsforeningen af VæreSteder</li>
-                <li><a href="#">Adresse: Danmarksgade 6A, 1. - 7000 Fredericia</a></li>
-                <li><a href="#">Telefon: 7592 4000</a></li>
-                <li><a href="#">Mail: lvsinfo@lavs.dk</a></li>
-                <li>cvr.nr. 29055009</li>
+           <!--      <li>Landsforeningen af VæreSteder</li> -->
+                <li><a target="_blank" href="@home.GoogleMapsLink">Adresse: @home.Adresse</a></li>
+                <li><a href="tel:@home.Telefon">Telefon: @home.Telefon</a></li>
+                <li><a href="mailto:@home.Email">Mail: @home.Email</a></li>
+                <li>cvr.nr. @home.Cvr</li>
             </ul>
         </div>
         <div id="footer-sidebar4" class="footer-column">
             <h4>Følg os</h4>
             <div class="social-footer">
-                <a href="#"><i class="fab fa-facebook-square medium-icons"></i></a>
-                <a href="#"><i class="fab fa-youtube medium-icons"></i></a>
-                <a href="#"><i class="fab fa-twitter medium-icons"></i></a>
+                <a href="@home.Facebook"><i class="fab fa-facebook-square medium-icons"></i></a>
+                <a href="@home.Youtube"><i class="fab fa-youtube medium-icons"></i></a>
+                <a href="@home.Twitter"><i class="fab fa-twitter medium-icons"></i></a>
             </div>
         </div>
     </div>

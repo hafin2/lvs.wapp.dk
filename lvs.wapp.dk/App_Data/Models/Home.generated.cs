@@ -46,6 +46,51 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Adresse
+		///</summary>
+		[ImplementPropertyType("adresse")]
+		public string Adresse
+		{
+			get { return this.GetPropertyValue<string>("adresse"); }
+		}
+
+		///<summary>
+		/// Cvr
+		///</summary>
+		[ImplementPropertyType("cvr")]
+		public string Cvr
+		{
+			get { return this.GetPropertyValue<string>("cvr"); }
+		}
+
+		///<summary>
+		/// Email
+		///</summary>
+		[ImplementPropertyType("email")]
+		public string Email
+		{
+			get { return this.GetPropertyValue<string>("email"); }
+		}
+
+		///<summary>
+		/// Facebook
+		///</summary>
+		[ImplementPropertyType("facebook")]
+		public string Facebook
+		{
+			get { return this.GetPropertyValue<string>("facebook"); }
+		}
+
+		///<summary>
+		/// Google maps link
+		///</summary>
+		[ImplementPropertyType("googleMapsLink")]
+		public string GoogleMapsLink
+		{
+			get { return this.GetPropertyValue<string>("googleMapsLink"); }
+		}
+
+		///<summary>
 		/// Logo
 		///</summary>
 		[ImplementPropertyType("logo")]
@@ -55,12 +100,39 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Telefon
+		///</summary>
+		[ImplementPropertyType("telefon")]
+		public string Telefon
+		{
+			get { return this.GetPropertyValue<string>("telefon"); }
+		}
+
+		///<summary>
 		/// Title
 		///</summary>
 		[ImplementPropertyType("title")]
 		public string Title
 		{
 			get { return this.GetPropertyValue<string>("title"); }
+		}
+
+		///<summary>
+		/// Twitter
+		///</summary>
+		[ImplementPropertyType("twitter")]
+		public string Twitter
+		{
+			get { return this.GetPropertyValue<string>("twitter"); }
+		}
+
+		///<summary>
+		/// Youtube
+		///</summary>
+		[ImplementPropertyType("youtube")]
+		public string Youtube
+		{
+			get { return this.GetPropertyValue<string>("youtube"); }
 		}
 	}
 }

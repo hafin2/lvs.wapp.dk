@@ -1,0 +1,16 @@
+{
+  "id": "6b703625-c254-4c1d-8f1d-feae480117e6",
+  "name": "Send template email to hassefinderup@gmail.com",
+  "form": "a4db0f2b-8a05-437f-a2bb-8b362c79f4c6",
+  "active": true,
+  "workflowTypeId": "17c61629-d984-4e86-b43b-a8407b3efea9",
+  "executesOn": "Submitted",
+  "settings": {
+    "Email": "hassefinderup@gmail.com",
+    "SenderEmail": "",
+    "Subject": "The Form '{form_name}' was submitted",
+    "RazorViewFilePath": "Forms/Emails/Example-Template.cshtml",
+    "Attachment": ""
+  },
+  "sortOrder": 1
+}

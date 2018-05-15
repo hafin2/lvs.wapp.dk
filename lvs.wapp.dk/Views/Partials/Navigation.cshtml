@@ -1,21 +1,20 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using Umbraco.Web
 @{
     Layout = null;
-    var root = CurrentPage.AncestorOrSelf(1);
+    var allpages = Model.Content.Site().Descendants();
     var home = Umbraco.TypedContentAtRoot().OfType<Home>().SingleOrDefault();
 }
 
 <header>
     <div class="header-container">
         <div class="contact-info">
-            <a href="#"><i class="fas fa-phone"></i> Tlf. 7592 4000</a>
-            <a href="#"><i class="fas fa-envelope"></i> lvsinfo@lavs.dk</a>
+            <a href="tel:@home.Telefon"><i class="fas fa-phone"></i> Tlf. @home.Telefon</a>
+            <a href="mailto:@home.Email"><i class="fas fa-envelope"></i> @home.Email</a>
         </div>
         <div class="link-elements">
-            <a href=""><i class="fab fa-facebook-square"></i></a>
-            <a href=""><i class="fab fa-youtube"></i></a>
-            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href="@home.Facebook"><i class="fab fa-facebook-square"></i></a>
+            <a href="@home.Youtube"><i class="fab fa-youtube"></i></a>
+            <a href="@home.Twitter"><i class="fab fa-twitter"></i></a>
         </div>
     </div>
 </header>
@@ -24,29 +23,16 @@
         <div id="MobileNav">
             <span id="mobilemenu" class="fas fa-bars"></span>
         </div>
-        <!--Fix umbraco field-->
-        <a class="navbar-brand" href="/">
-
-            
-
-        </a>
-
+        <a class="logo" href="@home.Url"><img src="@home.Logo.Url" alt=""></a>
         <ul id="navElements">
-            @{
-            foreach (var page in root.Children.Where("Visible"))
+
+            @foreach (var page in allpages)
             {
-                <li class="nav-item @(page.IsAncestorOrSelf(CurrentPage) ? "active" : null)">
-                    <a class="nav-link" href="@page.Url">@page.Name</a>
+                <li>
+                    <a href="@page.Url">@page.Name</a>
                 </li>
-        }
             }
-            <!--
-        <li><a href="frontpage.html">Forside</a></li>
-        <li><a href="Whois.html">Om os <i class="fas fa-sort-down"></i></a></li>
-        <li><a href="activitycalender.html">Aktiviteter</a></li>
-        <li><a href="vaeresteder.html">Væresteder</a></li>
-        <li><a href="contact.html">Kontakt os</a></li>
-        -->
+            
         </ul>
     </div>
 </nav>
